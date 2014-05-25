@@ -1,0 +1,16 @@
+{
+	"name": "dust-loader",
+	"version": "1.0.0",
+	"description": "dustjs loader module for webpack",
+	"author": "Valentin Agachi",
+	"main": "index.js",
+	"peerDependencies": {
+		"dustjs-linkedin": "*"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.php"
+		}
+	]
+}
