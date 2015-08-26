@@ -6,6 +6,7 @@ module.exports = function(content) {
     this.cacheable();
   }
 
+  if (this.query === '?whitespacestrue') dust.config.whitespace = true;
 
   var name = this.resourcePath.replace(this.options.context + path.sep, '').replace('.dust', '').split(path.sep).join('/'),
     compiled = dust.compile(content, name);
