@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "precommit": "eslint . && npm test",
-    "test": "rm node_modules/dust-loader && ln -s .. node_modules/dust-loader && ava"
+    "test": "rm -f node_modules/dust-loader && ln -s .. node_modules/dust-loader && ava"
   },
   "files": [
     "index.js"
