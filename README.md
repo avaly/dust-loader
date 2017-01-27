@@ -7,7 +7,7 @@ Compiles dust templates and exports the compiled functions, allowing for renderi
 [Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
 
 ``` javascript
-var template = require("dust!./file.dust");
+var template = require('dust!./file.dust');
 // => returns file.dust compiled as template function
 ```
 
@@ -17,9 +17,17 @@ var template = require("dust!./file.dust");
 module.exports = {
   module: {
     loaders: [
-      { test: /\.dust$/, loader: "dust-loader" }
+      {
+        test: /\.dust$/,
+        loader: 'dust-loader'
+      }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      dust: 'dustjs-linkedin'
+    })
+  ],
 };
 ```
 
@@ -30,9 +38,14 @@ Then you only need to write: `require("./file.dust")`
 You will need to bundle the [dust core](https://github.com/linkedin/dustjs/blob/master/dist/dust-core.js) in your pack in order to render the compiled templates.
 
 ```javascript
-require('./views/foo/bar.tpl');
+var tpl = require('./views/foo/bar.tpl');
 
+// with dust <= 2.6
 dust.render('views/foo/bar', context, function(err, result){
+	// result holds the rendered HTML code
+});
+// with dust >= 2.7
+dust.render(tpl, context, function(err, result){
 	// result holds the rendered HTML code
 });
 ```
