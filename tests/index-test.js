@@ -16,7 +16,7 @@ const WEBPACK_CONFIG = {
     pathinfo: true
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.dust$/,
         loader: 'dust-loader'
@@ -44,7 +44,7 @@ test.serial.cb('default', (t) => {
 
 test.serial.cb('preserveWhitespace', (t) => {
   const fs = new MemoryFS();
-  WEBPACK_CONFIG.module.loaders[0].query = 'preserveWhitespace';
+  WEBPACK_CONFIG.module.rules[0].options = 'preserveWhitespace';
   const compiler = webpack(WEBPACK_CONFIG);
   compiler.outputFileSystem = fs;
   compiler.run(() => {

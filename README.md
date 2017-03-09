@@ -1,5 +1,7 @@
 # [dust](https://github.com/linkedin/dustjs) loader for [webpack](http://webpack.github.io/)
 
+[![Travis](https://img.shields.io/travis/avaly/dust-loader/master.svg?style=flat-square)](https://travis-ci.org/avaly/dust-loader)
+
 Compiles dust templates and exports the compiled functions, allowing for rendering of the templates in a browser environment.
 
 ## Usage

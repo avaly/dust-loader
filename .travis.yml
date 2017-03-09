@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 'stable'
+  - '4'
+  - '6'
+
+deploy:
+  - provider: script
+    script: tools/publish.sh
+    on:
+      tags: true

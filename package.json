@@ -2,33 +2,32 @@
   "name": "dust-loader",
   "version": "1.1.0",
   "description": "dustjs loader module for webpack",
-  "author": "Valentin Agachi",
+  "author": {
+    "name": "Valentin Agachi",
+    "url": "http://agachi.name/"
+  },
   "main": "index.js",
   "scripts": {
-    "precommit": "eslint . && npm test",
-    "test": "rm -f node_modules/dust-loader && ln -s .. node_modules/dust-loader && ava"
+    "lint": "eslint .",
+    "prepush": "npm test",
+    "test": "npm run lint && rm -f node_modules/dust-loader && ln -s .. node_modules/dust-loader && ava"
   },
   "files": [
     "index.js"
   ],
   "devDependencies": {
-    "ava": "^0.17.0",
+    "ava": "^0.18.2",
     "babel-eslint": "^7.1.1",
     "dustjs-linkedin": "^2.7.5",
-    "eslint": "^3.14.1",
-    "husky": "^0.13.1",
+    "eslint": "^3.17.1",
+    "husky": "^0.13.2",
     "memory-fs": "^0.4.1",
-    "webpack": "^1.14.0"
+    "webpack": "^2.2.1"
   },
   "peerDependencies": {
-    "dustjs-linkedin": "*"
+    "dustjs-linkedin": "^2.7.5"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ],
+  "license": "MIT",
   "ava": {
     "files": [
       "tests/*.js"
