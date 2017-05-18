@@ -41,7 +41,23 @@ You can also preserve the whitespace in your template with the following loader 
 {
   test: /\.dust$/,
   loader: 'dust-loader',
-  query: 'preserveWhitespace'
+  options: 'preserveWhitespace'
+}
+```
+
+### rootDir 
+
+Sets the root directory for your dust templates. The rootDir string will be removed from the beginning of the dust module path before it is turned into the template name.
+
+```js
+{
+  test: /\.dust$/,
+  use: {
+    loader: 'dust-loader',
+    options: {
+      rootDir: 'src/app/templates'
+    }
+  }
 }
 ```
 
