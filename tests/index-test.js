@@ -54,3 +54,44 @@ test.serial.cb('preserveWhitespace', (t) => {
     t.end();
   });
 });
+
+test.serial.cb('preserveWhitespaceOptionsObject', (t) => {
+  const fs = new MemoryFS();
+  WEBPACK_CONFIG.module.rules[0].options = {
+    preserveWhitespace: true
+  };
+  WEBPACK_CONFIG.entry[1] =  `${FIXTURES}/templateDir/templateDir.js`;
+
+  const compiler = webpack(WEBPACK_CONFIG);
+  compiler.outputFileSystem = fs;
+  compiler.run(() => {
+    const compiled = fs.readFileSync('/compiled.js', 'utf-8');
+    eval(compiled);
+    t.true(compiled.indexOf("(function(dust){dust.register(\"tests\\/_fixtures_\\/templateDir\\/rootDirTemplate\",body_0);") !== -1)
+    t.is(t.context.result, '<p>\n  Hello,\n  World!\n</p>\n')
+    t.end();
+  });
+});
+
+test.serial.cb('rootDirDefined', (t) => {
+  const fs = new MemoryFS();
+  WEBPACK_CONFIG.module.rules[0].options = {
+    preserveWhitespace: true
+  };
+  WEBPACK_CONFIG.entry[1] =  `${FIXTURES}/templateDir/templateDir.js`;
+  WEBPACK_CONFIG.module.rules[0].options = {
+    rootDir: 'tests/_fixtures_/templateDir'
+  };
+  const compiler = webpack(WEBPACK_CONFIG);
+  compiler.outputFileSystem = fs;
+  compiler.run(() => {
+    const compiled = fs.readFileSync('/compiled.js', 'utf-8');
+    eval(compiled);
+    t.true(typeof compiled === 'string')
+    t.true(compiled.indexOf("(function(dust){dust.register(\"rootDirTemplate\",body_0);") !== -1)
+    t.true(compiled.indexOf("(function(dust){dust.register(\"tests\/_fixtures_\/templateDir\/rootDirTemplate\",body_0);") === -1)
+    t.is(t.context.result, '<p>\n  Hello,\n  World!\n</p>\n')
+    t.end();
+  });
+});
+
