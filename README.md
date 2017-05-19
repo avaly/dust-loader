@@ -40,8 +40,24 @@ You can also preserve the whitespace in your template with the following loader 
 ```js
 {
   test: /\.dust$/,
-  loader: 'dust-loader',
-  options: 'preserveWhitespace'
+  use: {
+    loader: 'dust-loader',
+    options: 'preserveWhitespace'
+  }
+}
+```
+
+or 
+
+```js
+{
+  test: /\.dust$/,
+  use: {
+    loader: 'dust-loader',
+    options: {
+      preserveWhitespace: true
+    }
+  }
 }
 ```
 
