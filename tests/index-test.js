@@ -75,9 +75,6 @@ test.serial.cb('preserveWhitespaceOptionsObject', (t) => {
 
 test.serial.cb('rootDirDefined', (t) => {
   const fs = new MemoryFS();
-  WEBPACK_CONFIG.module.rules[0].options = {
-    preserveWhitespace: true
-  };
   WEBPACK_CONFIG.entry[1] =  `${FIXTURES}/templateDir/templateDir.js`;
   WEBPACK_CONFIG.module.rules[0].options = {
     rootDir: 'tests/_fixtures_/templateDir'
@@ -89,7 +86,7 @@ test.serial.cb('rootDirDefined', (t) => {
     eval(compiled);
     t.true(typeof compiled === 'string')
     t.true(compiled.indexOf("(function(dust){dust.register(\"rootDirTemplate\",body_0);") !== -1)
-    t.true(compiled.indexOf("(function(dust){dust.register(\"tests\/_fixtures_\/templateDir\/rootDirTemplate\",body_0);") === -1)
+    t.true(compiled.indexOf("(function(dust){dust.register(\"tests\\/_fixtures_\\/templateDir\\/rootDirTemplate\",body_0);") === -1)
     t.is(t.context.result, '<p>\n  Hello,\n  World!\n</p>\n')
     t.end();
   });
