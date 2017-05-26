@@ -3,7 +3,7 @@ var dust = require('dustjs-linkedin');
 
 module.exports = function(content) {
   //If rootDir is configured then omit it from the template name
-  const rootDir = this.query['rootDir'] ? `${this.query['rootDir']}${path.sep}` : '';
+  const rootDir = this.query['rootDir'] ? `${path.normalize(this.query['rootDir'])}${path.sep}` : '';
 
   if (this.cacheable) {
     this.cacheable();
