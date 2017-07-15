@@ -22,7 +22,7 @@
     "eslint": "^3.17.1",
     "husky": "^0.13.2",
     "memory-fs": "^0.4.1",
-    "webpack": "^2.2.1"
+    "webpack": "^3.3.0"
   },
   "peerDependencies": {
     "dustjs-linkedin": "^2.7.5"
