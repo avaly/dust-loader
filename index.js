@@ -1,28 +1,35 @@
-var path = require('path');
-var dust = require('dustjs-linkedin');
+const path = require('path');
+const dust = require('dustjs-linkedin');
+const loaderUtils = require('loader-utils')
 
 module.exports = function(content) {
+
+  const options = loaderUtils.getOptions(this) || {};
+
   //If rootDir is configured then omit it from the template name
-  const rootDir = this.query['rootDir'] ? `${path.normalize(this.query['rootDir'])}${path.sep}` : '';
+  const rootDir = options['rootDir'] ? `${path.normalize(options['rootDir'])}${path.sep}` : '';
 
   if (this.cacheable) {
     this.cacheable();
   }
 
-  if (typeof this.query === "string" && this.query.indexOf('preserveWhitespace') > -1) {
+  if (typeof options === "string" && options.indexOf('preserveWhitespace') > -1) {
     dust.config.whitespace = true;
   }
 
-  if (this.query['preserveWhitespace']) {
+  if (options['preserveWhitespace']) {
     dust.config.whitespace = true;
   }
 
-  var name = this.resourcePath
-    .replace(this.options.context + path.sep + rootDir, '')
+  const context = this.rootContext || this.options.context; 
+
+  const name = this.resourcePath
+    .replace(context + path.sep + rootDir, '')
     .replace('.dust', '')
     .split(path.sep)
     .join('/');
-  var compiled = dust.compile(content, name);
+
+  const compiled = dust.compile(content, name);
 
   return "module.exports = " + compiled;
 };

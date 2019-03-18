@@ -1,6 +1,6 @@
 {
   "name": "dust-loader",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "dustjs loader module for webpack",
   "author": {
     "name": "Valentin Agachi",
@@ -19,18 +19,22 @@
     "ava": "^0.19.0",
     "babel-eslint": "^7.1.1",
     "dustjs-linkedin": "^2.7.5",
-    "eslint": "^3.17.1",
+    "eslint": "^5.15.3",
     "husky": "^0.13.2",
     "memory-fs": "^0.4.1",
-    "webpack": "^2.2.1"
+    "webpack": "^4.29.6"
   },
   "peerDependencies": {
-    "dustjs-linkedin": "^2.7.5"
+    "dustjs-linkedin": "^2.7.5",
+    "webpack": ">= 2.0.0"
   },
   "license": "MIT",
   "ava": {
     "files": [
       "tests/*.js"
     ]
+  },
+  "dependencies": {
+    "loader-utils": "^1.2.3"
   }
 }
