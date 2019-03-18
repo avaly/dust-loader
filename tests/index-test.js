@@ -27,7 +27,10 @@ const WEBPACK_CONFIG = {
     new webpack.ProvidePlugin({
       dust: 'dustjs-linkedin'
     })
-  ]
+  ],
+  optimization: {
+    minimize: false
+  },
 };
 
 test.serial.cb('default', (t) => {
