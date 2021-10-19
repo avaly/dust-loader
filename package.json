@@ -6,6 +6,10 @@
     "name": "Valentin Agachi",
     "url": "http://agachi.name/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avaly/dust-loader.git"
+  },
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
